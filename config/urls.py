@@ -6,9 +6,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # 🔐 LOGIN JWT
-    path('api/login/', TokenObtainPairView.as_view()),
-    path('api/refresh/', TokenRefreshView.as_view()),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # 🌐 API
+    # APIs
     path('api/', include('api.urls')),
 ]

@@ -1,21 +1,31 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (
-    MicroViewSet,
-    TanqueViewSet,
-    SensorViewSet,
-    ValvulaViewSet,
-    UsuarioViewSet
+from .views import *
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
 )
 
 router = DefaultRouter()
 
-router.register('microacueductos', MicroViewSet)
-router.register('tanques', TanqueViewSet)
-router.register('sensores', SensorViewSet)
-router.register('valvulas', ValvulaViewSet)
-router.register('usuarios', UsuarioViewSet)
+router.register('usuario', UsuarioViewSet)
+router.register('rol', RolViewSet)
+router.register('usuario-rol', UsuarioRolViewSet)
+
+router.register('microacueducto', MicroacueductoViewSet)
+router.register('tanque', TanqueViewSet)
+router.register('vivienda', ViviendaViewSet)
+
+router.register('dispositivo', DispositivoIOTViewSet)
+router.register('sensor', SensorViewSet)
+router.register('lectura', LecturaNivelViewSet)
+router.register('valvula', ValvulaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+
+    # JWT LOGIN
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
