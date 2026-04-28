@@ -23,10 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-__mwzyo_dlxs6udr8jt4d88d#2*%so58y%qb6ymwr+3))7xn(d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'backend-iot2026-production.up.railway.app',
+    '127.0.0.1',
+    'localhost',
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://backend-iot2026-production.up.railway.app',
+]
 
 # Application definition
 
@@ -82,8 +89,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-import os
-from pathlib import Path
+
 
 DATABASES = {}
 
@@ -123,6 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization
