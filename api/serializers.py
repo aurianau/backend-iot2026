@@ -67,3 +67,39 @@ class ValvulaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Valvula
         fields = '__all__'
+
+
+class EstadoValvulaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EstadoValvula
+        fields = '__all__'
+
+
+class EstadoSistemaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EstadoSistema
+        fields = '__all__'
+
+
+class AlertaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alerta
+        fields = '__all__'
+
+
+class ComandoRemotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ComandoRemoto
+        fields = '__all__'
+
+
+class RespuestaComandoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RespuestaComando
+        fields = '__all__'
+
+
+class AuditoriaSistemaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuditoriaSistema
+        fields = '__all__'

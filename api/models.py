@@ -88,3 +88,50 @@ class Recurso(models.Model):
 class RecursoRol(models.Model):
     recurso = models.ForeignKey(Recurso, on_delete=models.CASCADE)
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
+
+    # ESTADO VALVULA
+class EstadoValvula(models.Model):
+    valvula = models.ForeignKey(Valvula, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=30)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+
+# ESTADO SISTEMA
+class EstadoSistema(models.Model):
+    dispositivo = models.ForeignKey(DispositivoIOT, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=150)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+
+# ALERTA
+class Alerta(models.Model):
+    dispositivo = models.ForeignKey(DispositivoIOT, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=50)
+    mensaje = models.CharField(max_length=255)
+    prioridad = models.CharField(max_length=20)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+
+# COMANDO REMOTO
+class ComandoRemoto(models.Model):
+    usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    valvula = models.ForeignKey(Valvula, on_delete=models.CASCADE)
+    accion = models.CharField(max_length=50)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+
+# RESPUESTA COMANDO
+class RespuestaComando(models.Model):
+    comando = models.ForeignKey(ComandoRemoto, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=30)
+    mensaje = models.CharField(max_length=255)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+
+# AUDITORIA SISTEMA
+class AuditoriaSistema(models.Model):
+    usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    accion = models.CharField(max_length=100)
+    detalle = models.CharField(max_length=255)
+    fecha = models.DateTimeField(auto_now_add=True)

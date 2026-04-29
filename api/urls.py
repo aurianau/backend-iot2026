@@ -22,6 +22,13 @@ router.register('sensor', SensorViewSet)
 router.register('lectura', LecturaNivelViewSet)
 router.register('valvula', ValvulaViewSet)
 
+router.register('estado-valvula', EstadoValvulaViewSet)
+router.register('estado-sistema', EstadoSistemaViewSet)
+router.register('alerta', AlertaViewSet)
+router.register('comando-remoto', ComandoRemotoViewSet)
+router.register('respuesta-comando', RespuestaComandoViewSet)
+router.register('auditoria', AuditoriaSistemaViewSet)
+
 urlpatterns = [
     path('', include(router.urls)),
 
